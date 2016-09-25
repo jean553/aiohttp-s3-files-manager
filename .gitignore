@@ -1,3 +1,4 @@
 .vagrant/
 provisionning/bootstrap-dev.retry
 *.pyc
+cache/
