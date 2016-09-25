@@ -1,0 +1,5 @@
+aiohttp
+requests
+boto3
+pylint
+pytest
