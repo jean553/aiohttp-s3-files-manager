@@ -1,1 +1,3 @@
 .vagrant/
+provisionning/bootstrap-dev.retry
+*.pyc
