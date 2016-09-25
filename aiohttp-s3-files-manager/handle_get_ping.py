@@ -2,7 +2,10 @@
 GET ping handler.
 """
 
+import asyncio
+
 from aiohttp import web
 
-async def handle_get_ping(request):
+@asyncio.coroutine
+def handle_get_ping(request):
     return web.Response(text="OK")
