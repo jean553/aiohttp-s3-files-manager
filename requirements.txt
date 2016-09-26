@@ -1,5 +1,5 @@
 aiohttp
 requests
-boto3
 pylint
 pytest
+git+https://github.com/aio-libs/aiobotocore.git@master#egg=aiobotocore
