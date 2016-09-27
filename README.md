@@ -11,6 +11,17 @@ vagrant ssh
 python aiohttp-s3-files-handler/
 ```
 
+## Create S3 bucket
+
+The S3 bucket creation client uses boto3 which is not compliant with the
+botocore version of aibotocore. That's why they are separated in two different
+virtual environments.
+
+```
+source /tmp/virtual_botoenv/bin/activate
+python scripts/create_bucket.py
+```
+
 ## Tests
 
 ```

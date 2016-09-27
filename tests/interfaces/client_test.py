@@ -43,6 +43,9 @@ class ClientTest(requests.Session):
     def get_ping(self):
         self.get("/ping")
 
+    def get_connectivity_status(self):
+        self.get("/connectivity-status")
+
     def assert_200(self):
         assert self.result.status_code == 200, \
             "expected HTTP 200, got %d instead" % self.result.status_code

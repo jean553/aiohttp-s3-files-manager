@@ -15,12 +15,14 @@
       args:
         chdir: "{{ ansible_env.APP_PATH }}"
         creates: "{{ ansible_env.VIRTUAL_ENV_PATH }}"
-    
-    - name: creating bucket using boto library
-      shell: "{{ ansible_env.VIRTUAL_ENV_PATH }}/bin/python {{ ansible_env.APP_PATH }}/scripts/create_bucket.py"
+
+    - name: creating tox boto environment
+      shell: >
+        tox -r -e botoenv
       args:
         chdir: "{{ ansible_env.APP_PATH }}"
-
+        creates: "/tmp/virtual_botoenv"
+    
     - name: enable virtualenv and fix destination directory when SSH
       lineinfile:
         dest=/home/vagrant/.zshrc
