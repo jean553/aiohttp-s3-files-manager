@@ -10,7 +10,7 @@ DOCKER_ENV = {
   "S3_ACCESS_KEY" => "dummy_value_cannot_be_none",
   "S3_SECRET_ACCESS" => "dummy_value_cannot_be_none",
   "APP_PATH" => "/home/vagrant/aiohttp-s3-files-manager",
-  "VIRTUAL_ENV_PATH" => "/tmp/virtual_env34",
+  "VIRTUAL_ENV_PATH" => "/tmp/virtual_env35",
   "ENV_NAME" => "devdocker"
 }
 
