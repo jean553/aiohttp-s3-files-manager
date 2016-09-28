@@ -26,5 +26,5 @@
     - name: enable virtualenv and fix destination directory when SSH
       lineinfile:
         dest=/home/vagrant/.zshrc
-        line="source /tmp/virtual_env34/bin/activate && cd $APP_PATH"
+        line="source /tmp/virtual_env35/bin/activate && cd $APP_PATH"
         insertafter=EOF
