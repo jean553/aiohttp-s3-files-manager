@@ -22,6 +22,12 @@ source /tmp/virtual_botoenv/bin/activate
 python scripts/create_bucket.py
 ```
 
+## Upload file into the created bucket
+
+```
+curl http://s3:5000/mybucket/1?AWSAccessKeyId=dummy_value&Expires=1475162584&Signature=dummy_signature --upload-file file.csv
+```
+
 ## Tests
 
 ```
