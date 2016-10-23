@@ -8,7 +8,7 @@ the streaming method.
 ```
 vagrant up
 vagrant ssh
-python aiohttp-s3-files-handler/
+python aiohttp-s3-files-manager
 ```
 
 ## Create S3 bucket
