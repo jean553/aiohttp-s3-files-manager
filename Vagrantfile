@@ -48,7 +48,7 @@ Vagrant.configure(2) do |config|
         set -e
         cd $APP_PATH
         ansible-playbook provisionning/bootstrap-dev.yml
-        echo 'done, you can now run `vagrant ssh dev`'
+        echo 'done, you can now run `vagrant ssh`'
       "
     end
   end
