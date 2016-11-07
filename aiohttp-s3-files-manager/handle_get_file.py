@@ -2,6 +2,7 @@
 GET file handler.
 """
 
+import json
 import asyncio
 import aiobotocore
 
@@ -28,17 +29,23 @@ def handle_get_file(request):
     stream = response["Body"]
 
     result = web.StreamResponse()
-    result.content_type = "text/plain"
+    result.content_type = "application/json"
 
     yield from result.prepare(request)
 
     try:
         line = yield from stream.readline()
-        result.write(line)
+        fields = line.split(b',')
 
         while len(line) > 0:
             line = yield from stream.readline()
-            result.write(line)
+            values = line.split(b',')
+
+            item = {}
+            for index, field in enumerate(fields):
+                item[field] = values[index]
+
+            result.write(item)
     finally:
         stream.close()
 
