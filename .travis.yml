@@ -1,0 +1,12 @@
+sudo: required
+
+services:
+    - docker
+
+before_install:
+    - docker pull jean553/docker-s3-server-dev
+    - docker run -d jean553/docker-s3-server-dev
+
+script:
+    - apt-get update && apt-get upgrade -y
+    - apt-get install ansible -y
