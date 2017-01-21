@@ -1,6 +1,7 @@
-"""
-GET connectivity status handler.
-"""
+'''GET connectivity status handler.
+'''
+
+import os
 
 import asyncio
 import aiobotocore
@@ -13,17 +14,17 @@ def handle_get_connectivity_status(loop):
     session = aiobotocore.get_session(loop=loop)
 
     client = session.create_client(
-        service_name="s3",
-        region_name="",
-        aws_secret_access_key="",
-        aws_access_key_id="",
-        endpoint_url="http://s3:5000"
+        service_name='s3',
+        region_name='',
+        aws_secret_access_key='',
+        aws_access_key_id='',
+        endpoint_url=os.getenv('S3_ENDPOINT'),
     )
 
     response = yield from client.put_object(
-        Bucket="mybucket",
-        Key="key",
-        Body="data"
+        Bucket='mybucket',
+        Key='key',
+        Body='data'
     )
 
-    return web.Response(text="OK")
+    return web.Response(text='OK')

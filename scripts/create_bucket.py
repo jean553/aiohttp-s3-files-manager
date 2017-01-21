@@ -16,7 +16,7 @@ def generate_bucket():
         service_name='s3',
         aws_access_key_id='',
         aws_secret_access_key='',
-        endpoint_url=os.getenv('S3_ENDPOINT')
+        endpoint_url=os.getenv('S3_ENDPOINT'),
     )
 
     resource.create_bucket(Bucket=os.getenv('BUCKET_NAME'))

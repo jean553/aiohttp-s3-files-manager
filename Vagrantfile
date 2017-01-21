@@ -11,7 +11,8 @@ DOCKER_ENV = {
   "S3_SECRET_ACCESS" => "dummy_value_cannot_be_none",
   "APP_PATH" => "/home/vagrant/aiohttp-s3-files-manager",
   "VIRTUAL_ENV_PATH" => "/tmp/virtual_env35",
-  "ENV_NAME" => "devdocker"
+  "ENV_NAME" => "devdocker",
+  "BOTO_ENV" => "botoenv"
 }
 
 ENV['VAGRANT_NO_PARALLEL'] = 'yes'
