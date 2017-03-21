@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jean553/aiohttp-s3-files-manager.svg?branch=master)](https://travis-ci.org/jean553/aiohttp-s3-files-manager)
+
 # aiohttp-s3-files-manager
 
 Simple HTTP service running aiohttp. Used to serve files from S3 bucket using
