@@ -5,8 +5,37 @@ services:
 
 before_install:
     - docker pull jean553/docker-s3-server-dev
-    - docker run -d jean553/docker-s3-server-dev
+    - docker run -d -p 127.0.0.1:5000:5000 jean553/docker-s3-server-dev
+
+env:
+  global:
+    - S3_ENDPOINT=http://localhost:5000
+    - VIRTUAL_ENV_PATH=/tmp/virtual_env34
+    - ENV_NAME=ci
+    - APP_PATH=.
+    - BOTO_ENV=botoenv_ci
+    - BUCKET_NAME=mybucket
+    - S3_ACCESS_KEY=dummy_value_cannot_be_none
+    - S3_SECRET_ACCESS=dummy_value_cannot_be_none"
 
 script:
-    - apt-get update && apt-get upgrade -y
-    - apt-get install ansible -y
+
+    # prepare the environment
+    - sudo apt-get update
+    - sudo apt-get install python-pip python3.4 -y
+    - pip install ansible
+    - ansible-playbook provisionning/bootstrap-dev.yml
+
+    # create the S3 bucket
+    - source /tmp/virtual_botoenv/bin/activate
+    - python scripts/create_bucket.py
+    - deactivate
+
+    # upload a test file into the created bucket
+    - curl "http://localhost:5000/mybucket/Key" --upload-file file.csv
+
+    # start the service and run the tests
+    - source /tmp/virtual_env34/bin/activate
+    - python aiohttp-s3-files-manager & echo $! > /tmp/service.pid
+    - py.test
+    - kill "$(cat /tmp/service.pid)"

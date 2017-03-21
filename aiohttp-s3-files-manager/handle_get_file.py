@@ -1,6 +1,7 @@
-"""
-GET file handler.
-"""
+'''GET file handler.
+'''
+
+import os
 
 import json
 import asyncio
@@ -8,7 +9,7 @@ import aiobotocore
 
 from aiohttp import web
 
-UTF8 = "utf-8"
+UTF8 = 'utf-8'
 
 @asyncio.coroutine
 def handle_get_file(request):
@@ -16,22 +17,22 @@ def handle_get_file(request):
     session = aiobotocore.get_session()
 
     client = session.create_client(
-        service_name="s3",
-        region_name="",
-        aws_secret_access_key="",
-        aws_access_key_id="",
-        endpoint_url="http://s3:5000",
+        service_name='s3',
+        region_name='',
+        aws_secret_access_key='',
+        aws_access_key_id='',
+        endpoint_url=os.getenv('S3_ENDPOINT'),
     )
 
     response = yield from client.get_object(
-        Bucket="mybucket",
-        Key="Key",
+        Bucket='mybucket',
+        Key='Key',
     )
 
-    stream = response["Body"]
+    stream = response['Body']
 
     result = web.StreamResponse()
-    result.content_type = "application/json"
+    result.content_type = 'application/json'
 
     yield from result.prepare(request)
 
@@ -58,7 +59,7 @@ def handle_get_file(request):
             response = json.dumps(item)
 
             if len(line) > 0:
-                response += ","
+                response += ','
 
             result.write(response.encode())
 
